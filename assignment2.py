@@ -15,7 +15,7 @@ Y = trainData['meal']
 Xt = testData.drop(['meal', 'id', 'DateTime'], axis=1)
 Yt = testData['meal']
 
-# x, xt, y, yt = train_test_split(X, Y, test_size=0.1, random_state=42)
+x, xt, y, yt = train_test_split(X, Y, test_size=0.1, random_state=42)
 
 # model = DecisionTreeClassifier()
 # modelFit = model.fit(X, Y)
@@ -24,10 +24,12 @@ Yt = testData['meal']
 
 # pred = [int(i) for i in pred]
 
-from sklearn.ensemble import BaggingClassifier
+from sklearn.ensemble import RandomForestClassifier
 
-model = BaggingClassifier(n_estimators=100, n_jobs=-1)
-modelFit = model.fit(X, Y)
-pred = modelFit.predict(Xt)
+model = RandomForestClassifier(n_estimators=100, n_jobs=-1)
+modelFit = model.fit(x, y)
+pred = modelFit.predict(xt)
 
 pred = [int(i) for i in pred]
+
+# print(accuracy_score(pred, yt))
