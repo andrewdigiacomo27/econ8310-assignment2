@@ -3,7 +3,6 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
-from xgboost import XGBClassifier
 from sklearn.model_selection import KFold
 
 trainData = pd.read_csv("https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3.csv")
@@ -26,10 +25,16 @@ Yt = testData['meal']
 
 from sklearn.ensemble import RandomForestClassifier
 
-model = RandomForestClassifier(n_estimators=100, n_jobs=-1)
+# model = RandomForestClassifier(n_estimators=100, n_jobs=-1)
+# modelFit = model.fit(X, Y)
+# pred = modelFit.predict(Xt)
+
+# pred = [int(i) for i in pred]
+
+from xgboost import XGBClassifier
+
+model = XGBClassifier(n_estimators=100, max_depth=75, learning_rate=0.5)
 modelFit = model.fit(X, Y)
 pred = modelFit.predict(Xt)
 
 pred = [int(i) for i in pred]
-
-# print(accuracy_score(pred, yt))
