@@ -17,9 +17,17 @@ Yt = testData['meal']
 
 # x, xt, y, yt = train_test_split(X, Y, test_size=0.1, random_state=42)
 
-model = DecisionTreeClassifier()
-modelFit = model.fit(X, Y)
+# model = DecisionTreeClassifier()
+# modelFit = model.fit(X, Y)
 
+# pred = modelFit.predict(Xt)
+
+# pred = [int(i) for i in pred]
+
+from sklearn.ensemble import BaggingClassifier
+
+model = BaggingClassifier(n_estimators=100, n_jobs=-1)
+modelFit = model.fit(X, Y)
 pred = modelFit.predict(Xt)
 
 pred = [int(i) for i in pred]
