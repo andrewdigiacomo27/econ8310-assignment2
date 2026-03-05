@@ -21,3 +21,5 @@ model = DecisionTreeClassifier()
 modelFit = model.fit(X, Y)
 
 pred = modelFit.predict(Xt)
+
+pred = [int(i) for i in pred]
